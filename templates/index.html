@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% from "bootstrap5/form.html" import render_form %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,23 +36,24 @@
     </div>
 </div>
 <!-- List -->
-<div class="list-group" style="margin-left: 150px; margin-right: 150px; margin-top: 50px;">
-    <form class="list-group-item d-flex gap-2 bg-light py-4 px-5" method="POST">
-        <input class="form-control border border-secondary border-3" name="task-name">
-        <input class="btn btn-secondary" style="padding-left: 80px; padding-right: 80px; white-space: nowrap;" value="Add New Task" type="submit" name="add">
+<div class="list-group" style="margin-left: 10%; margin-right: 10%; margin-top: 50px;">
+    <form class="list-group-item d-flex gap-2 bg-light py-4 px-5" method="POST" action="/" enctype="multipart/form-data">
+        {{ add_form.csrf_token }}
+        {{ add_form.name }}
+        <input type="submit" value="Add New Task" class="btn btn-secondary" style="padding-left: 8%; padding-right: 8%;">
     </form>
 
     {% for index, row in tasks.iterrows(): %}
-    <label class="list-group-item d-flex gap-2">
+    <form class="list-group-item d-flex gap-2" method="POST">
         {% if row["complete"] == True %}
-        <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+        <input class="form-check-input flex-shrink-0" type="checkbox" value="">
         {% else %}
         <input class="form-check-input flex-shrink-0" type="checkbox" value="">
         {% endif %}
         <span>
             {{ row["name"] }}
         </span>
-    </label>
+    </form>
     {% endfor %}
 
 </div>
