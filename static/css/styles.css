@@ -1,8 +1,19 @@
-body {
+.background-animated-1 {
+	background: linear-gradient(-45deg, #002379, #874CCC, #C65BCF, #FFEAE3);
+	background-size: 400% 400%;
+	animation: gradient 20s ease infinite;
+}
+
+.background-animated-2 {
+	background: linear-gradient(-45deg, #1D2B53, #FF004D, #FF8F00, #FFBF00);
+	background-size: 400% 400%;
+	animation: gradient 20s ease infinite;
+}
+
+.background-animated-3 {
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	animation: gradient 20s ease infinite;
-	height: 100vh;
 }
 
 @keyframes gradient {

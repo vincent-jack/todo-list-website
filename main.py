@@ -18,15 +18,25 @@ class AddTaskForm(FlaskForm):
                        render_kw={"class": "form-control border border-secondary border-3"})
 
 
+class DeleteCompletedForm(FlaskForm):
+    submit = SubmitField("Delete Completed Tasks",
+                         render_kw={"class": "nav-link text-white"})
+
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    global df
     add_form = AddTaskForm()
+    delete_form = DeleteCompletedForm()
     if add_form.validate_on_submit():
         text = add_form.name.data
         df.loc[len(df.index)] = {"name": text, "complete": False}
         df.to_csv("instance/task-data.csv", index=False)
+    if delete_form.validate_on_submit():
+        df = df[df.complete != True]
+        df.to_csv("instance/task-data.csv", index=False)
 
-    return render_template("index.html", tasks=df, add_form=add_form)
+    return render_template("index.html", tasks=df, add_form=add_form, delete_form=delete_form)
 
 
 if __name__ == "__main__":
