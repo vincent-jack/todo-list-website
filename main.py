@@ -2,8 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap5
 import pandas
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, DecimalField, SelectField
-from wtforms.validators import DataRequired, URL, Length
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Length
 import os
 
 app = Flask(__name__)
@@ -16,6 +16,9 @@ df = pandas.read_csv("instance/task-data.csv")
 class AddTaskForm(FlaskForm):
     name = StringField(validators=[DataRequired(), Length(max=100)],
                        render_kw={"class": "form-control border border-secondary border-3"})
+    submit = SubmitField("Add New Task",
+                         render_kw={"class": "btn btn-secondary", "style": "padding-left: 8%; padding-right: 8%;"})
+
 
 
 class DeleteCompletedForm(FlaskForm):
@@ -28,15 +31,39 @@ def home():
     global df
     add_form = AddTaskForm()
     delete_form = DeleteCompletedForm()
-    if add_form.validate_on_submit():
-        text = add_form.name.data
-        df.loc[len(df.index)] = {"name": text, "complete": False}
-        df.to_csv("instance/task-data.csv", index=False)
-    if delete_form.validate_on_submit():
-        df = df[df.complete != True]
-        df.to_csv("instance/task-data.csv", index=False)
 
     return render_template("index.html", tasks=df, add_form=add_form, delete_form=delete_form)
+
+
+@app.route('/adddata', methods=['POST'])
+def add_data():
+    global df
+    if request.method == "POST":
+        text = request.form["name"]
+        if text.strip() != "":
+            df.loc[len(df.index)] = {"name": text, "complete": False}
+            df.to_csv("instance/task-data.csv", index=False)
+    return redirect(url_for("home"))
+
+
+@app.route('/deletedata', methods=['POST'])
+def delete_data():
+    global df
+    if request.method == "POST":
+        df = df[df.complete != True]
+        df.to_csv("instance/task-data.csv", index=False)
+    return redirect(url_for("home"))
+
+
+@app.route('/updatedata', methods=['POST'])
+def update_data():
+    index = int(request.form.get('row'))
+    checked = False
+    if request.form.get('checked') == "true":
+        checked = True
+    df.loc[index, "complete"] = checked
+    df.to_csv("instance/task-data.csv", index=False)
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
