@@ -52,17 +52,20 @@ def delete_data():
     if request.method == "POST":
         df = df[df.complete != True]
         df.to_csv("instance/task-data.csv", index=False)
+        df.reset_index(drop=True, inplace=True)
     return redirect(url_for("home"))
 
 
 @app.route('/updatedata', methods=['POST'])
 def update_data():
-    index = int(request.form.get('row'))
-    checked = False
-    if request.form.get('checked') == "true":
-        checked = True
-    df.loc[index, "complete"] = checked
-    df.to_csv("instance/task-data.csv", index=False)
+    global df
+    if request.method == "POST":
+        index = int(request.form.get('row'))
+        checked = False
+        if request.form.get('checked') == "true":
+            checked = True
+        df.loc[index, "complete"] = checked
+        df.to_csv("instance/task-data.csv", index=False)
     return redirect(url_for("home"))
 
 

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb7cb4b9-dbe0-4e28-a206-b18056a2a916" name="Changes" comment="Add new background colour">
+    <list default="true" id="fb7cb4b9-dbe0-4e28-a206-b18056a2a916" name="Changes" comment="Save checkbox state and strikethrough text when checkbox is checked">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/task-data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/instance/task-data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717756225236</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Save checkbox state and strikethrough text when checkbox is checked">
+      <option name="closed" value="true" />
+      <created>1717766683013</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717766683013</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -159,6 +165,7 @@
     <MESSAGE value="Introduce WTForms for saving task data" />
     <MESSAGE value="Add new background colour" />
     <MESSAGE value="Add new background colour" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new background colour" />
+    <MESSAGE value="Save checkbox state and strikethrough text when checkbox is checked" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save checkbox state and strikethrough text when checkbox is checked" />
   </component>
 </project>
