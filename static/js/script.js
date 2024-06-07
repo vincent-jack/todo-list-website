@@ -16,3 +16,7 @@ document.getElementById("button-3").addEventListener("click", function() {
     document.getElementById("body").className = "background-animated-3";
     localStorage.setItem("background", "background-animated-3");
 });
+document.getElementById("button-4").addEventListener("click", function() {
+    document.getElementById("body").className = "background-animated-4";
+    localStorage.setItem("background", "background-animated-4");
+});
